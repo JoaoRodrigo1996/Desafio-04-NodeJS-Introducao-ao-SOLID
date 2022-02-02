@@ -1,8 +1,9 @@
-import { User } from "../../model/User";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+/* eslint-disable prettier/prettier */
+import { User } from "../../model/User"
+import { IUsersRepository } from "../../repositories/IUsersRepository"
 
 interface IRequest {
-  user_id: string;
+  user_id: string
 }
 
 class ShowUserProfileUseCase {
@@ -10,7 +11,14 @@ class ShowUserProfileUseCase {
 
   execute({ user_id }: IRequest): User {
     // Complete aqui
+    const user = this.usersRepository.findById(user_id)
+
+    if (!user) {
+      throw new Error("User not found!")
+    }
+
+    return user
   }
 }
 
-export { ShowUserProfileUseCase };
+export { ShowUserProfileUseCase }
